@@ -23,3 +23,7 @@ node_modules/
 
 # 临时目录
 tmp*/
+
+# 本地项目说明不上传
+CLAUDE.md
+docs/
