@@ -1,0 +1,16 @@
+# 自动规范换行符
+* text=auto
+
+# 明确文本类型
+*.md    text eol=lf
+*.py    text eol=lf
+*.json  text eol=lf
+*.mermaid text eol=lf
+*.txt   text eol=lf
+
+# 二进制文件不做转换
+*.png   binary
+*.jpg   binary
+*.pdf   binary
+*.docx  binary
+*.pyc   binary
