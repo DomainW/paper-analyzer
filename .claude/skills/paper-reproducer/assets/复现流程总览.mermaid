@@ -1,0 +1,30 @@
+%% 复现流程总览 — paper-reproducer（pr_status.py --overview 生成，可手工编辑）
+flowchart TB
+    S1["步骤1 · 选论文 · 定义复现目标<br/>锁定目标表/口径/完成线(±Δ)；记硬件与时长"] --> S2
+    S2["步骤2 · 建 复现/README.md 骨架<br/>复制模板·勾 8 步；README=唯一状态记录"] --> S3
+    S3["步骤3 · 环境就绪<br/>venv·版本留痕·依赖自检✅"] --> S4
+    S4["步骤4 · 数据就绪<br/>数据/落位·许可口径·下载脚本"] --> S5
+    S5["步骤5 · 代码就绪<br/>官方优先；否则手搓(implementation-guide)"] --> S6
+    S6["步骤6 · 小规模冒烟<br/>前向→损失→反向→存盘"] --> G{"步骤7 · 同口径指标对齐 = 完成线？"}
+    G -- 是 ✅ --> S8["步骤8 · 收尾<br/>更新三态·回写资源清单·汇报"]
+    S8 --> DONE["复现完成 · 全部 ✅"]
+    G -- 否 ⛔（超容忍）--> DIFF["差异分析(三查)<br/>①版本/口径 ②实现细节 ③评测协议"]
+    DIFF --> FIX["记录归因 / 最小复现 → 修正"]
+    FIX -. 修正后回到对应步骤 .-> S5
+    FIX -.-> S6
+    S1:::wait
+    S2:::wait
+    S3:::wait
+    S4:::wait
+    S5:::wait
+    S6:::wait
+    G:::gate
+    S8:::ok
+    DONE:::ok
+    DIFF:::block
+    FIX:::run
+classDef ok fill:#e9f7ee,stroke:#3ba55d,color:#20242b;
+classDef run fill:#fff6e0,stroke:#f2b134,color:#20242b;
+classDef block fill:#fdece7,stroke:#e0645a,color:#20242b;
+classDef wait fill:#eef3f6,stroke:#8aa2b8,color:#20242b;
+classDef gate fill:#e8f1fa,stroke:#5b9bd5,color:#20242b;

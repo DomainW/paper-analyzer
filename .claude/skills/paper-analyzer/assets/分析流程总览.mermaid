@@ -1,0 +1,41 @@
+%% 分析流程总览 — paper-analyzer（pa_overview.py 生成，可手工编辑）
+flowchart TB
+    MODE{"先判定执行模式 A / A+ / B"}
+    MODE -- B 只要相关论文/脉络 --> B5["仅步骤5 多库检索<br/>候选清单+对比表，不产报告不归档"]
+    MODE -- A 要完整分析/报告/归档 --> S0["步骤0 确认目标"]
+    S0 --> S1["步骤1 读PDF（分层抽取+页面体检）"]
+    S1 --> S2["步骤2 核心逻辑分析"]
+    S2 --> S3["步骤3 公式与验证提取"]
+    S3 --> S4["步骤4 批判性分析（五段）"]
+    S4 --> S5["步骤5 搜索5篇分角色(R1前驱…R5邻域)"]
+    S5 --> S7["步骤7 生成 md 报告 + pa_fig 两图(arch/rel, --qa)"]
+    S7 --> S8["步骤8 归档 → 已分析/<发表年>/<论文名>/"]
+    S8 --> G{"完成线：默认六项逐过才报完成？"}
+    MODE -. A+ 还要复现资料 .-> S6["◇步骤6 代码与数据溯源<br/>建 复现/数据/资料 + 资源清单六类初稿"]
+    S5 -. 按需 .-> S6
+    S6 -.-> S7
+    S8 -. ◇8b 按需 .-> S8B["◇转 Word（pandoc + TOC）"]
+    G -- 否 受阻/进行中 --> GAP["记为受阻/进行中，列缺口不虚报"]
+    G -- 是 --> DONE["报完成 ✅（归档含发表年 · 两图齐）"]
+    DONE --> HANDOFF["要复现时 → paper-reproducer 接手"]
+    MODE:::gate
+    B5:::wait
+    S0:::wait
+    S1:::wait
+    S2:::wait
+    S3:::wait
+    S4:::wait
+    S5:::wait
+    S6:::run
+    S7:::wait
+    S8:::wait
+    S8B:::run
+    G:::gate
+    GAP:::block
+    DONE:::ok
+    HANDOFF:::ok
+classDef ok fill:#e9f7ee,stroke:#3ba55d,color:#20242b;
+classDef run fill:#fff6e0,stroke:#f2b134,color:#20242b;
+classDef block fill:#fdece7,stroke:#e0645a,color:#20242b;
+classDef wait fill:#eef3f6,stroke:#8aa2b8,color:#20242b;
+classDef gate fill:#e8f1fa,stroke:#5b9bd5,color:#20242b;

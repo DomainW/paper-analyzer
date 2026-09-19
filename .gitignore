@@ -1,4 +1,19 @@
-﻿# 依赖与第三方库
+﻿# .claude 个人配置
+.claude/*
+!.claude/skills/
+
+# 官方 skill，不参与开源
+.claude/skills/skill-creator/
+
+# 本地/缓存文件
+.claude/settings.local.json
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.log
+
+# 依赖与第三方库
 _第三方库/
 node_modules/
 
@@ -6,7 +21,5 @@ node_modules/
 存档/
 论文库/
 
-# 编辑器/工具本地配置
-.claude/
-.DS_Store
-*.log
+# 临时目录
+tmp*/

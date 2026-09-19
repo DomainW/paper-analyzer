@@ -1,0 +1,20 @@
+{
+  "type": "lineage",
+  "title": "研究脉络示例：SE-VMUnet → SE-VMUnet++（可替换为任意论文）",
+  "orientation": "LR",
+  "nodes": [
+    {"id": "backbone", "label": "SSM/Mamba\n(线性复杂度长程建模)", "type": "pre", "layer": 0},
+    {"id": "vmamba", "label": "VMamba (NeurIPS2024)\nSS2D 二维交叉扫描", "type": "module", "layer": 0},
+    {"id": "sevmunet", "label": "SE-VMUnet\n（2025 期刊预印本）", "type": "pre", "layer": 1},
+    {"id": "main", "label": "SE-VMUnet++\n（2026 学位论文）", "type": "this", "layer": 2},
+    {"id": "rival", "label": "Mamba-SEUNet / MP-SENet\n（同期基线）", "type": "rival", "layer": 1},
+    {"id": "future", "label": "轻量化/语言无关\n端侧增强（推测）", "type": "next", "layer": 3}
+  ],
+  "edges": [
+    {"u": "vmamba", "v": "sevmunet", "label": "技术来源", "style": "solid"},
+    {"u": "sevmunet", "v": "main", "label": "第3章→诊断→第4章", "style": "solid"},
+    {"u": "vmamba", "v": "main", "label": "骨干复用", "style": "dash"},
+    {"u": "rival", "v": "main", "label": "同场对比", "style": "dash"},
+    {"u": "main", "v": "future", "label": "启发后续", "style": "dash"}
+  ]
+}
